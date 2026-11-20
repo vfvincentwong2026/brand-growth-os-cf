@@ -1,0 +1,64 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "brand-growth-os-cf",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-01-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "brand-growth-os-db",
+      "database_id": "replace-with-your-d1-database-id",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "ASSETS_BUCKET",
+      "bucket_name": "brand-growth-os-assets"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "BRAND_CACHE",
+      "id": "replace-with-your-kv-namespace-id"
+    }
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "SKILL_QUEUE",
+        "queue": "brand-growth-skill-jobs"
+      },
+      {
+        "binding": "OUTREACH_QUEUE",
+        "queue": "brand-growth-outreach-jobs"
+      }
+    ],
+    "consumers": [
+      {
+        "queue": "brand-growth-skill-jobs",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5
+      },
+      {
+        "queue": "brand-growth-outreach-jobs",
+        "max_batch_size": 5,
+        "max_batch_timeout": 10
+      }
+    ]
+  },
+  "ai": {
+    "binding": "AI"
+  },
+  "vars": {
+    "APP_ENV": "production",
+    "DEFAULT_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "VISION_MODEL": "@cf/llava-hf/llava-1.5-7b-hf",
+    "PINTEREST_MIN_SCORE": "0.75",
+    "OUTREACH_REQUIRE_APPROVAL": "true"
+  }
+}
