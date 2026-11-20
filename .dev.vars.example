@@ -1,0 +1,6 @@
+APP_ENV=development
+DEFAULT_MODEL=@cf/meta/llama-3.3-70b-instruct-fp8-fast
+VISION_MODEL=@cf/llava-hf/llava-1.5-7b-hf
+PINTEREST_MIN_SCORE=0.75
+OUTREACH_REQUIRE_APPROVAL=true
+WEBHOOK_SIGNING_SECRET=replace-with-a-strong-random-hmac-secret
