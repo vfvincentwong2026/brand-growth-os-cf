@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>brand-growth-os-cf · AI-Native Brand & 3D Studio</title>
+    <style>
+      :root {
+        --bg: #f6efe2;
+        --panel: #fffdf9;
+        --ink: #181818;
+        --primary: #1e3a2f;
+        --accent: #c86d3b;
+        --border: #dfd6c5;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 24px;
+        background: var(--primary);
+        color: #f6efe2;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: 0.04em;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 340px 1fr 360px;
+        gap: 16px;
+        padding: 16px;
+        min-height: calc(100vh - 52px);
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .card h2 {
+        margin: 0;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--primary);
+      }
+      label {
+        font-size: 12px;
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      input, textarea, select, button {
+        font: inherit;
+        font-size: 13px;
+        padding: 8px 10px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+      }
+      button {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button.secondary {
+        background: var(--accent);
+      }
+      #three-viewport {
+        width: 100%;
+        height: 440px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+      pre {
+        margin: 0;
+        padding: 10px;
+        background: #f3ece0;
+        border-radius: 6px;
+        font-size: 12px;
+        white-space: pre-wrap;
+        max-height: 260px;
+        overflow: auto;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      @media (max-width: 1100px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>BRAND-GROWTH-OS-CF · AI-Native Brand, 3D Packaging & Outreach OS</h1>
+      <div class="row">
+        <input id="worker-url" value="http://127.0.0.1:8787" style="width: 210px" />
+        <input id="project-id" placeholder="proj_limarasa_001" style="width: 160px" />
+        <button id="btn-load">Sync State</button>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>1. Project & Auto-Trigger</h2>
+        <label>
+          Brand Name
+          <input id="brand-name" value="LIMA RASA" />
+        </label>
+        <label>
+          Industry
+          <input id="brand-industry" value="tea & milk tea" />
+        </label>
+        <label>
+          Mood & Visual Keywords (comma-separated)
+          <input id="brand-moods" value="tactile botanical, warm editorial, minimalist" />
+        </label>
+        <button id="btn-create">Create & Auto-Trigger Skills</button>
+
+        <h2>Living Brand Memory</h2>
+        <pre id="brand-spec">No project loaded yet.</pre>
+      </section>
+
+      <section class="card">
+        <h2>2. Three.js Packaging & Spatial Viewport</h2>
+        <div id="three-viewport"></div>
+        <div class="row">
+          <label style="flex: 1">
+            Target Mesh
+            <select id="mesh-target">
+              <option value="tea_cup_body">tea_cup_body (Packaging)</option>
+              <option value="counter_fluted_wall">counter_fluted_wall (Space)</option>
+            </select>
+          </label>
+          <label style="flex: 1">
+            Roughness (<span id="val-rough">0.78</span>)
+            <input id="input-rough" type="range" min="0" max="1" step="0.02" value="0.78" />
+          </label>
+          <label style="flex: 1">
+            Metalness (<span id="val-metal">0.02</span>)
+            <input id="input-metal" type="range" min="0" max="1" step="0.02" value="0.02" />
+          </label>
+        </div>
+        <button class="secondary" id="btn-distill-3d">Distill 3D Adjustment into Brand Rules</button>
+      </section>
+
+      <section class="card">
+        <h2>3. Auto-Distilled Rules & Feedback</h2>
+        <pre id="distilled-rules">[]</pre>
+        <label>
+          Manual Design / Campaign / Outreach Rule
+          <textarea id="feedback-text" rows="3" placeholder="e.g. Always include tamper-evident seal sticker on delivery cups"></textarea>
+        </label>
+        <button id="btn-feedback">Submit & Auto-Distill</button>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
